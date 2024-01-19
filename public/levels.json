@@ -1,0 +1,20 @@
+{
+  "levels": [
+    {
+      "name": "test",
+      "bodies": [
+        {
+          "name": "Earth",
+          "type": "planet",
+          "radius": 2,
+          "mass": 1000,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+          "texture": "earth_6K.jpg"
+        }
+      ]
+    }
+  ]
+}
