@@ -13,6 +13,17 @@
                 "y": 0
             },
           "texture": "earth_6K.jpg"
+        },
+        {
+          "name": "Earth",
+          "type": "planet",
+          "radius": 1,
+          "mass": 300,
+          "position": {
+            "x": -10,
+            "y": 0
+          },
+          "texture": "moon.jpg"
         }
       ]
     }
