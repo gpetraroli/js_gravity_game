@@ -13,7 +13,7 @@
             "y": 0
           },
           "radialSpeed": 0.001,
-          "texture": "earth_6K.jpg"
+          "texture": "earth.jpg"
         },
         {
           "name": "Moon",
@@ -21,19 +21,27 @@
           "radius": 1,
           "mass": 300,
           "position": {
-            "x": -10,
+            "x": -8,
             "y": 0
           },
           "radialSpeed": 0,
           "texture": "moon.jpg"
         }
       ],
-      "player1": {
-        "position": {
-          "x": 0,
-          "y": 0
+      "players": [
+        {
+          "position": {
+            "x": 10,
+            "y": -5
+          }
+        },
+        {
+          "position": {
+            "x": -10,
+            "y": 5
+          }
         }
-      }
+      ]
     }
   ]
 }

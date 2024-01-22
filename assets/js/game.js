@@ -11,7 +11,7 @@ class Game {
     #bodies = [];
     #camera;
     #players = [];
-    #activePlayer = 0;
+    #activePlayerIndex = null;
     #bullets = [];
 
     cameraFrustumSize = 20; // This value depends on how much of the scene you want to see
@@ -26,24 +26,41 @@ class Game {
         });
 
         // create players
-        this.#players.push(new Vessel('', new THREE.Vector3(8, -5, 0)));
+        this.#levels[this.#activeLevel].players.forEach((player) => {
+            this.#players.push(new Vessel('', new THREE.Vector3(player.position.x, player.position.y, 0)));
+        });
 
         // create scene
         this.#scene = this.createScene();
 
+        this.#activePlayerIndex = 0;
+
         // create shoot event
         // TODO: create function
         document.addEventListener('keydown', (event) => {
+            switch (event.code) {
+                case 'ArrowUp' :
+                    this.#players[this.#activePlayerIndex].mesh.rotateZ(-1 * Math.PI / 180);
+                    break;
+                case 'ArrowDown':
+                    this.#players[this.#activePlayerIndex].mesh.rotateZ(Math.PI / 180);
+                    break;
+            }
+
             if (event.code !== 'Space') {
                 return;
             }
 
-            const bulletVector = new THREE.Vector3(-0.20, 0, 0);
-            bulletVector.applyAxisAngle(new THREE.Vector3(0, 0, 1), this.#players[0].mesh.rotation.z - Math.PI / 2);
+            const activePlayer = this.#players[this.#activePlayerIndex];
 
-            const bullet = new Bullet(new THREE.Vector3(8, -5), 1, bulletVector);
+            const bulletVector = new THREE.Vector3(-0.20, 0, 0);
+            bulletVector.applyAxisAngle(new THREE.Vector3(0, 0, 1), activePlayer.mesh.rotation.z - Math.PI / 2);
+
+            const bullet = new Bullet(new THREE.Vector3(activePlayer.mesh.position.x, activePlayer.mesh.position.y), 1, bulletVector);
             this.#bullets.push(bullet);
             this.scene.add(bullet.mesh);
+
+            this.#activePlayerIndex = (this.#activePlayerIndex + 1) % this.#players.length;
         });
 
         this.createCamera();
@@ -68,7 +85,13 @@ class Game {
             scene.add(body.mesh);
         });
 
-        scene.add(this.#players[0].mesh);
+        this.#players.forEach((player) => {
+            scene.add(player.mesh);
+
+            const directionVector = new THREE.Vector3(0, 0, 0).sub(player.mesh.position);
+            const angle = Math.atan2(directionVector.y, directionVector.x);
+            player.mesh.rotation.z = angle - Math.PI / 2;
+        });
 
         this.#scene = scene;
 

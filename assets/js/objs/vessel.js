@@ -19,21 +19,8 @@ class Bullet extends Body {
         const material = new THREE.MeshBasicMaterial({color: 0xff0000});
         this._mesh = new THREE.Mesh(geometry, material);
 
-        this._mesh.rotateZ(Math.PI / 2);
-
         this._mesh.position.x = position.x;
         this._mesh.position.y = position.y;
-
-        document.addEventListener('keydown', (event) => {
-            switch (event.code) {
-                case 'ArrowUp':
-                    this._mesh.rotateZ(-1 * Math.PI / 180);
-                    break;
-                case 'ArrowDown':
-                    this._mesh.rotateZ(Math.PI / 180);
-                    break;
-            }
-        });
     }
 }
 
