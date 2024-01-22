@@ -4,7 +4,7 @@ import Body from "./body";
 class Bullet extends Body {
     #sprite;
 
-    constructor(sprite) {
+    constructor(sprite, position) {
         super(0);
 
         const vertices = new Float32Array([
@@ -20,6 +20,9 @@ class Bullet extends Body {
         this._mesh = new THREE.Mesh(geometry, material);
 
         this._mesh.rotateZ(Math.PI / 2);
+
+        this._mesh.position.x = position.x;
+        this._mesh.position.y = position.y;
 
         document.addEventListener('keydown', (event) => {
             switch (event.code) {
