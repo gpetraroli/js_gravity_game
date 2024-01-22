@@ -3,8 +3,8 @@ import Body from "./body";
 
 class Planet extends Body {
 
-    constructor(radius, position, texture, mass) {
-        super(mass);
+    constructor(radius, position, texture, mass, radialSpeed = 0) {
+        super(mass, radialSpeed);
 
         const geometry = new THREE.SphereGeometry(radius, 32, 32);
         const material = new THREE.MeshBasicMaterial({

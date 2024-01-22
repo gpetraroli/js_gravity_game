@@ -10,17 +10,6 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// window.addEventListener('keydown', (event) => {
-//     if (event.code !== 'Space') {
-//         return;
-//     }
-
-    // const bullet = new Bullet(new THREE.Vector3(8, -5), 1, new THREE.Vector3(-0.17, -0.01, 0));
-    // bullets.push(bullet);
-    // game.scene.add(bullet.mesh);
-// });
-
-
 game.animate(renderer);
 
 window.addEventListener('resize', () => {

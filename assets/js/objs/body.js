@@ -1,9 +1,11 @@
 class Body {
     _mesh;
     _mass;
+    _radialSpeed;
 
-    constructor(mass) {
+    constructor(mass, radialSpeed = 0) {
         this._mass = mass;
+        this._radialSpeed = radialSpeed;
     }
 
     get mesh() {
@@ -12,6 +14,10 @@ class Body {
 
     get mass() {
         return this._mass;
+    }
+
+    get radialSpeed() {
+        return this._radialSpeed;
     }
 }
 

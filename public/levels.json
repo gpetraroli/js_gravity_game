@@ -8,14 +8,15 @@
           "type": "planet",
           "radius": 2,
           "mass": 1000,
-            "position": {
-                "x": 0,
-                "y": 0
-            },
+          "position": {
+            "x": 0,
+            "y": 0
+          },
+          "radialSpeed": 0.001,
           "texture": "earth_6K.jpg"
         },
         {
-          "name": "Earth",
+          "name": "Moon",
           "type": "planet",
           "radius": 1,
           "mass": 300,
@@ -23,6 +24,7 @@
             "x": -10,
             "y": 0
           },
+          "radialSpeed": 0,
           "texture": "moon.jpg"
         }
       ],

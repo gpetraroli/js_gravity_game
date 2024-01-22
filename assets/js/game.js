@@ -22,7 +22,7 @@ class Game {
 
         // create bodies
         this.#levels[this.#activeLevel].bodies.forEach((body) => {
-            this.#bodies.push(new Planet(body.radius, body.position, 'build/images/' + body.texture, body.mass));
+            this.#bodies.push(new Planet(body.radius, body.position, 'build/images/' + body.texture, body.mass, body.radialSpeed));
         });
 
         // create players
@@ -32,6 +32,7 @@ class Game {
         this.#scene = this.createScene();
 
         // create shoot event
+        // TODO: create function
         document.addEventListener('keydown', (event) => {
             if (event.code !== 'Space') {
                 return;
@@ -98,6 +99,7 @@ class Game {
                 bullet.mesh.position.add(calculateVelocity(bullet, this.#bodies));
 
                 // check if bullet is overlapping with anybody's mesh
+                // TODO: create function in the physicEngine
                 this.#bodies.forEach((body) => {
                     if (body.mesh.position.distanceTo(bullet.mesh.position) < body.mesh.geometry.parameters.radius) {
                         this.#scene.remove(bullet.mesh);
@@ -105,9 +107,12 @@ class Game {
                 });
             });
 
+            this.#bodies.forEach((body) => {
+                body.mesh.rotation.y += body.radialSpeed;
+            });
 
-            requestAnimationFrame(() => this.animate(renderer));
             renderer.render(this.#scene, this.#camera);
+            requestAnimationFrame(() => this.animate(renderer));
         }, 1000 / 60); // 60 FPS
     }
 
