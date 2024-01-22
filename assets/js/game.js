@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import Planet from "./objs/planet";
+import Vessel from "./objs/vessel";
 
 class Game {
     #scene;
@@ -7,6 +8,8 @@ class Game {
     #activeLevel;
     #bodies = [];
     #camera;
+
+    cameraFrustumSize = 20; // This value depends on how much of the scene you want to see
 
     constructor(levels) {
         this.#levels = levels;
@@ -41,6 +44,10 @@ class Game {
             scene.add(body.mesh);
         });
 
+        const vessel = new Vessel('');
+        vessel.mesh.position.set(8, -5, 0);
+        scene.add(vessel.mesh);
+
         this.#scene = scene;
 
         return scene;
@@ -48,8 +55,7 @@ class Game {
 
     createCamera() {
         const aspect = window.innerWidth / window.innerHeight;
-        const frustumSize = 20; // This value depends on how much of the scene you want to see
-        const frustumHalfSize = frustumSize / 2;
+        const frustumHalfSize = this.cameraFrustumSize / 2;
         const near = 0.1;
         const far = 1000;
 

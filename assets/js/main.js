@@ -18,7 +18,7 @@ window.addEventListener('keydown', (event) => {
         return;
     }
 
-    const bullet = new Bullet(new THREE.Vector3(10, -8), 1, new THREE.Vector3(-0.17, -0.01, 0));
+    const bullet = new Bullet(new THREE.Vector3(8, -5), 1, new THREE.Vector3(-0.17, -0.01, 0));
     bullets.push(bullet);
     game.scene.add(bullet.mesh);
 });
@@ -36,8 +36,9 @@ window.addEventListener('keydown', (event) => {
 })();
 
 window.addEventListener('resize', () => {
+    const camera = game.camera;
     const aspect = window.innerWidth / window.innerHeight;
-    const frustumHalfSize = frustumSize / 2;
+    const frustumHalfSize = game.cameraFrustumSize / 2;
 
     camera.left = -frustumHalfSize * aspect;
     camera.right = frustumHalfSize * aspect;
